@@ -99,7 +99,7 @@ chain:
           cd -
         fi
 
-        export CLUSTER_NAME="$(echo -n $PROW_JOB_ID|sha256sum|cut -c-20)"
+        export CLUSTER_NAME="$(echo -n $PROW_JOB_ID|sha256sum|cut -c-20|tr -d '\n')"
         echo "$(date) Creating HyperShift cluster ${CLUSTER_NAME}"
 
         PULL_SECRET_PATH="/etc/ci-pull-credentials/.dockerconfigjson"
