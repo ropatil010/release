@@ -106,6 +106,18 @@ tests:
     - chain: ipi-aws-pre
     - ref: fips-check
     test:
+    - as: deploy
+      cli: latest
+      commands: hack/e2e-test.sh
+      dependencies:
+      - env: RELATED_IMAGE_OPERAND_IMAGE
+        name: pipeline:kubernetes-sigs-jobset
+      - env: OPERATOR_IMAGE
+        name: jobset-operator
+      from: src
+      resources:
+        requests:
+          cpu: 100m
     - ref: openshift-tests-extension-setup-out-of-payload
     - ref: openshift-e2e-test
     workflow: ipi-aws
